@@ -48,7 +48,7 @@ class Cs_Js_Smallgroups_Shortcode extends Cs_Js_Shortcode {
 
 		$output = <<<EOC
   <!-- Tell it which configuration to use... -->
-  <div x-data="new CSGroups({configuration: '$this->configuration'})">
+  <div x-data="CSGroups({configuration: '$this->configuration'})">
     <div class="cs-smallgroups cs-row">
       <template x-for="group in groups">
         <!-- There can only be one element within the template -->
