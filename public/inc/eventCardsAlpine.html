@@ -1,0 +1,25 @@
+    <div class="cs-event-cards cs-row">
+      <template x-for="event in events">
+        <!-- There can only be one element within the template -->
+        <div :id="event.identifier" :class="event.status" class="cs-card cs-event-card">
+          <div class="cs-event-card-image-area">
+            <img :src="event.image?.medium">
+          </div>
+          <div class="cs-event-card-details-area">
+            <div class="cs-event-name">
+                <a :href="event.link" class="cs-event-link" target="_blank"><span x-text="event.name"></span></a>
+            </div>
+            <div class="cs-date">
+                <!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
+                <span x-text="event.start.format('ll')" class="cs-date-gliph"></span>
+            </div>
+            <div class="cs-time">
+                <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="cs-time-gliph cs-start-time"></span>
+                <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="cs-end-time"></span>
+            </div>
+            <div class="cs-location"><span x-text="event.location" class="cs-location-gliph"></span></div>
+            <div class="cs-address"><span x-text="event.postcode"></span></span></div>
+          </div>
+        </div>
+      </template>
+    </div>

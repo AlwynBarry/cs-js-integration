@@ -33,7 +33,7 @@ use amb_dev\CS_JSI\Cs_Js_Shortcode as Cs_Js_Shortcode;
 class Cs_Js_Event_Cards_Shortcode extends Cs_Js_Shortcode {
 
     public function __construct( $atts ) {
-        parent::__construct( $atts );
+        parent::__construct( $atts, 'eventCardsAlpine.html' );
 	}
 
 	/*
@@ -45,40 +45,16 @@ class Cs_Js_Event_Cards_Shortcode extends Cs_Js_Shortcode {
 	 * @return	string	the HTML to render the events in cards
 	 */
 	protected function get_HTML_response() : string {
-
-		$output = <<<EOC
-  <!-- Tell it which configuration to use... -->
-  <div x-data="CSEvents({configuration: '$this->configuration'})">
-    <div class="cs-event-cards cs-row">
-      <template x-for="event in events">
-        <!-- There can only be one element within the template -->
-        <div :id="event.identifier" :class="event.status" class="cs-card cs-event-card">
-          <div class="cs-event-card-image-area">
-            <img :src="event.image?.medium">
-          </div>
-          <div class="cs-event-card-details-area">
-            <div class="cs-event-name">
-                <a :href="event.link" class="cs-event-link" target="_blank"><span x-text="event.name"></span></a>
-            </div>
-            <div class="cs-date">
-                <!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
-                <span x-text="event.start.format('ll')" class="cs-date-gliph"></span>
-            </div>
-            <div class="cs-time">
-                <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="cs-time-gliph cs-start-time"></span>
-                <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="cs-end-time"></span>
-            </div>
-            <div class="cs-location"><span x-text="event.location" class="cs-location-gliph"></span></div>
-            <div class="cs-address"><span x-text="event.postcode"></span></span></div>
-          </div>
-        </div>
-      </template>
-    </div>
-  </div>
-
-EOC;
+		
+		// Firstly get the JSON using the Configuration passed to the constructor
+		$output = "<div x-data=\"CSEvents({configuration: '$this->configuration'})\">";
+		// Now output the Alpine code to render the Small Groups
+		$output .= $this->alpineHTML;
+		// Close the surrounding DIV
+		$output .= '</div>' . "\n";
 
 		return $output;
+		
 	}
 
 }
@@ -95,4 +71,3 @@ EOC;
 function cs_js_event_cards_shortcode( $atts ) {
 	return ( new Cs_Js_Event_Cards_Shortcode( $atts ) )->run_shortcode();
 }
-	

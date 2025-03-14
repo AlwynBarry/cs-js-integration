@@ -46,7 +46,7 @@ class Cs_Js_Integration_Public {
 			'Cs_Js_Smallgroups_Shortcode' => 'class-cs-js-smallgroups-shortcode.php',
 		);
 
-	/*
+	/**
 	 * The shortcode names and their corresponding static functions that
 	 * will be called to execute the shortcodes.
 	 *
@@ -131,9 +131,11 @@ class Cs_Js_Integration_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-public.js', array( 'jquery' ), $this->version, false );
 		// Load the Alpine.js framework from their CDN - see https://alpinejs.dev/start-here
-		wp_enqueue_script( 'alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), null, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
+		// wp_enqueue_script( 'alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
+ 		wp_enqueue_script( 'alpine', plugin_dir_url( __FILE__ ) . 'js/alpinejs-3-x-x-min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
 		// Load the ChurchSuite framework from their CDN - see
-		wp_enqueue_script( 'churchsuite', 'https://cdn.jsdelivr.net/npm/@churchsuite/embed@^5.2.3/dist/cdn.min.js', array(), null, array( 'infooter' => 'true', ) );
+		// wp_enqueue_script( 'churchsuite', 'https://cdn.jsdelivr.net/npm/@churchsuite/embed@^5.2.3/dist/cdn.min.js', array(), $this->version, array( 'infooter' => 'true', ) );
+		wp_enqueue_script( 'churchsuite', plugin_dir_url( __FILE__ ) . 'js/churchsuite-embed-5.2.3.js', array(), $this->version, array( 'infooter' => 'true', ) );
 
 	}
 

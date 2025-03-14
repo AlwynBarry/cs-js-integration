@@ -31,32 +31,11 @@ use amb_dev\CS_JSI\Cs_Js_Shortcode as Cs_Js_Shortcode;
  */
 class Cs_Js_Event_List_Shortcode extends Cs_Js_Shortcode {
 
-   	/*
-	 * Provided to prevent continual re-creation of a constant value used in date calculations
-	 */
-	protected readonly \DateInterval $one_day;
 
     public function __construct( $atts ) {
-        parent::__construct( $atts );
-		$this->one_day = \DateInterval::createFromDateString( '1 day' );
+        parent::__construct( $atts, 'eventListAlpine.html' );
 	}
 
-	/*
-	 * A helper function to display the date split up into separate spans so it can be styled
-	 * 
-	 * @since 1.0.0
-	 * @param \DateTime $event_date		The date to be displayed
-	 * @result	string					The date split into html spans for day, date number, month and year
-	 */
-	protected function display_event_date( \DateTime $event_date ) : string {
-	    $result = '<div class="cs-date">';
-		$result .= '<span class="cs-day">' . $event_date->format( 'D' ) . '</span>';
-		$result .= '<span class="cs-date-number">' . $event_date->format( 'd' ) . '</span>';
-		$result .= '<span class="cs-month">' . $event_date->format( 'M' ) . '</span>';
-		$result .= '<span class="cs-year">' . $event_date->format( 'Y' ) . '</span>';
-		$result .= '</div>';
-		return $result;
-	}
 
 	/*
 	 * Use the JSON response to create the HTML containing the list of events.
@@ -68,46 +47,16 @@ class Cs_Js_Event_List_Shortcode extends Cs_Js_Shortcode {
 	 * @return	string	the HTML to render the events in cards
 	 */
 	protected function get_HTML_response() : string {
-
-		$output = <<<EOC
-  <!-- Tell it which configuration to use... -->
-  <div x-data="CSEvents({configuration: '$this->configuration'})">
-    <div class="cs-event-list">
-      <template x-for="event in events">
-        <!-- There can only be one element within the template -->
-        <div class="cs-event-list-event">
-          <div class="cs-event-row">
-            <div class="cs-date-column">
-              <div class="cs-date">
-                <!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
-		        <span x-text="event.start.format('ddd')" class="cs-day"></span>
-		        <span x-text="event.start.format('D')" class="cs-date-number"></span>
-		        <span x-text="event.start.format('MMM')" class="cs-month"></span>
-		        <span x-text="event.start.format('YYYY')" class="cs-year"></span>
-		      </div>
-		    </div>
-		    <div class="cs-event-column">
-		      <div :id="event.identifier" :class="event.status" class="cs-card cs-compact-event">
-                <div class="cs-time">
-                    <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="cs-time-gliph cs-start-time"></span>
-                    <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="cs-end-time"></span>
-                </div>
-                <div class="cs-event-name">
-                  <a :href="event.link" class="cs-event-link" target="_blank"><span x-text="event.name"></span></a>
-                </div>
-                <div class="cs-location"><span x-text="event.location" class="cs-location-gliph"></span></div>
-                <div class="cs-address"><span x-text="event.postcode"></span></span></div>
-              </div>
-            </div>  
-          </div>
-        </div>
-      </template>
-    </div>
-  </div>
-
-EOC;
+		
+		// Firstly get the JSON using the Configuration passed to the constructor
+		$output = "<div x-data=\"CSEvents({configuration: '$this->configuration'})\">\n";
+		// Now output the Alpine code to render the Small Groups
+		$output .= $this->alpineHTML;
+		// Close the surrounding DIV
+		$output .= '</div>' . "\n";
 
 		return $output;
+
 	}
 
 }
@@ -124,4 +73,3 @@ EOC;
 function cs_js_event_list_shortcode( $atts ) {
 	return ( new Cs_Js_Event_List_Shortcode( $atts ) )->run_shortcode();
 }
-	

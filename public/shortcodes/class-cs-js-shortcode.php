@@ -44,25 +44,54 @@ abstract class Cs_Js_Shortcode {
 
     protected const DEFAULT_ATTS = array( 'church_name' => '', 'configuration' => '' );
 
-    protected string $church_name;
-    protected string $configuration;
-
-	public function __construct( $atts ) {
+    protected readonly string $church_name;
+    protected readonly string $configuration;
+    protected readonly string $alpineHTML;
+ 
+    
+    /*
+     * The constructor expects a church_name and a configuration parameter, and will
+     * use these to set these properties once the parameters are sanitized.
+     * A child class should call this constructor and then set the $alpineHTML
+     * (e.g. by reading a file with the HTML, or manually setting it up in-line)
+     * 
+     * @since 1.0.0
+     * @param array	$atts	      An array with the keys:
+     * 							      church_name		The name of the church which appears immediately
+     * 									        		after https:// when logging in to your ChurchSuite
+     * 							      configuration 	The Hex string of the Embed Configuration to use
+     * @param string $fileName    The filename of the Alpine HTML to be used by the child class
+	 */
+	public function __construct( $atts, string $fileName ) {
 	    // set defaults
 		$sc_atts = shortcode_atts( \amb_dev\CS_JSI\Cs_Js_Shortcode::DEFAULT_ATTS, $atts );
 
 		// Get the church name parameter
-		$this->church_name = $sc_atts[ 'church_name' ] ?? '';
+		$church_name = $sc_atts[ 'church_name' ] ?? '';
 		// Sanitize the church_name so it is simply a-zA-Z
-		$this->church_name = strtolower( preg_replace( '/[^a-zA-Z]+/', '', $this->church_name ) );
+		$this->church_name = strtolower( preg_replace( '/[^a-zA-Z]+/', '', $church_name ) );
 
 		// Get the configuration parameter
-		$this->configuration = $sc_atts[ 'configuration' ] ?? '';
+		$configuration = $sc_atts[ 'configuration' ] ?? '';
 		// Sanitize the configuration so it is a string of hex separated by hyphens
-		$this->configuration = rtrim( trim( preg_replace( '/-+/', '-', preg_replace( '/[^a-f0-9-]+/', "", strtolower( $this->configuration ) ) ), '-'), '-');
+		$this->configuration = rtrim( trim( preg_replace( '/-+/', '-', preg_replace( '/[^a-f0-9-]+/', "", strtolower( $configuration ) ) ), '-'), '-');
+
+		// Read in the Alpine HTML required for the child instance 
+        $this->alpineHTML = file_get_contents( plugin_dir_path( __FILE__ ) . '../inc/' . $fileName );
+
 	}
+
 	
-	protected function get_church_url_script() {
+	/*
+	 * A helper function which returns the HTML that will be the root of the JSON call
+	 * This is called for you by the run_shortcode() function before it dispatches to
+	 * get_HTML_response() in the child class. 
+	 * 
+ 	 * @since	1.0.0
+ 	 * @return	string 	A string of HTML which contains a JS script that sets the Churchsuite
+ 	 * 					URL that the ChurchSuite Library will use to fetch the JSON
+	 */
+	private function get_church_url_script() {
 	    return '<script>CS.url = "https://' . $this->church_name . self::CHURCHSUITE_URL . '";</script>';
 	}
 
@@ -76,7 +105,8 @@ abstract class Cs_Js_Shortcode {
  	 * @since	1.0.0
  	 * @return	string 	The string with the HTML of the shortcode response
 	 */
-	protected abstract function get_HTML_response() : string;
+	protected abstract function get_HTML_response() : string; 
+
 
 	/*
 	 * Run the shortcode to produce the HTML output

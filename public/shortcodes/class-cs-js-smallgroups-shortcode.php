@@ -32,7 +32,7 @@ use amb_dev\CS_JSI\Cs_Js_Shortcode as Cs_Js_Shortcode;
 class Cs_Js_Smallgroups_Shortcode extends Cs_Js_Shortcode {
 
     public function __construct( $atts ) {
-        parent::__construct( $atts );
+        parent::__construct( $atts, 'smallGroupsAlpine.html' );
 	}
 
 	/*
@@ -45,40 +45,13 @@ class Cs_Js_Smallgroups_Shortcode extends Cs_Js_Shortcode {
 	 * @return	string	the HTML to render the small group list in cards
 	 */
 	protected function get_HTML_response() : string {
-
-		$output = <<<EOC
-  <!-- Tell it which configuration to use... -->
-  <div x-data="CSGroups({configuration: '$this->configuration'})">
-    <div class="cs-smallgroups cs-row">
-      <template x-for="group in groups">
-        <!-- There can only be one element within the template -->
-        <div :id="group.identifier" class="cs-card cs-group">
-          <div class="cs-group-image-area">
-            <img :src="group.image?.medium">
-          </div>
-          <div class="cs-group-details-area">
-            <div class="cs-group-name">
-                <a :href="group.link" class="cs-group-link" target="_blank"><span x-text="group.name"></span></a>
-            </div>
-            <div class="cs-calendar">
-              <span x-text="group.customFrequency ? group.frequency : group.frequency.charAt(0).toUpperCase() + group.frequency.slice(1) + ' on ' + group.day.charAt(0).toUpperCase() + group.day.slice(1)"></span>
-            </div>
-            <div class="cs-location">
-              <span x-text="group.location" class="cs-location-gliph"></span>
-            </div>
-            <div class="cs-time">
-                <span x-text="group.time.format('h:mma')" class="cs-time-gliph"></span>
-            </div>
-            <div class="cs-description">
-              <span x-text="group.description"></span>
-            </div>
-          </div>
-        </div>
-      </template>
-    </div>
-  </div>
-
-EOC;
+		
+		// Firstly get the JSON using the Configuration passed to the constructor
+		$output = "<div x-data=\"CSGroups({configuration: '$this->configuration'})\">";
+		// Now output the Alpine code to render the Small Groups
+		$output .= $this->alpineHTML;
+		// Close the surrounding DIV
+		$output .= '</div>' . "\n";
 
 		return $output;
 	}
@@ -97,4 +70,3 @@ EOC;
 function cs_js_smallgroups_shortcode( $atts ) {
 	return ( new Cs_Js_Smallgroups_Shortcode( $atts ) )->run_shortcode();
 }
-	
