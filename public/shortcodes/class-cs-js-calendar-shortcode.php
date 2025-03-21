@@ -8,10 +8,10 @@ use amb_dev\CS_JSI\Cs_Js_Shortcode as Cs_Js_Shortcode;
 
 
 /**
- * A child of Cs_Js_Shortcode to provide the creation of the HTML response for small lists
- * of events (likely less than 12) for use in a side 'widget area' or similar.
+ * A child of Cs_Js_Shortcode to provide the creation of the HTML response that
+ * displays a month of events as a 'calendar' grid.
  * 
- * This class uses Alpine.js to provide the HTML to display the events as a list.
+ * This class uses Alpine.js to provide the HTML to display the calendar.
  * 
  * Below the class we also provide a function which can be supplied to Wordpress to
  * run the ShortCode.  This function creates an instance of the Shortcode class and calls
@@ -33,11 +33,11 @@ class Cs_Js_Calendar_Shortcode extends Cs_Js_Shortcode {
 
 
     public function __construct( $atts ) {
-        parent::__construct( $atts, 'eventListAlpine.html' );
+        parent::__construct( $atts, 'calendarAlpine.html' );
 	}
 
 
-	/*
+	/**
 	 * Use the JSON response to create the HTML containing the list of events.
 	 * 
 	 * For each date there is only one date output in a left hand column, styled, and then
@@ -62,7 +62,7 @@ class Cs_Js_Calendar_Shortcode extends Cs_Js_Shortcode {
 }
 
 
-/*
+/**
  * Shortcode to be used in the content.
  *
  * @since 1.0.0

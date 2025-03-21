@@ -11,6 +11,8 @@ namespace amb_dev\CS_JSI;
  * @package    Cs_Js_Integration
  * @subpackage Cs_Js_Integration/public
  * @author     Alwyn Barry <alwyn_barry@yahoo.co.uk>
+ * @link       https://https://github.com/AlwynBarry
+ * @since      1.0.0
  */
 class Cs_Js_Integration_Public {
 
@@ -43,7 +45,9 @@ class Cs_Js_Integration_Public {
 			'Cs_Js_Shortcode' => 'class-cs-js-shortcode.php',
 			'Cs_Js_Event_Cards_Shortcode' => 'class-cs-js-event-cards-shortcode.php',
 			'Cs_Js_Event_List_Shortcode' => 'class-cs-js-event-list-shortcode.php',
+			'Cs_Js_Calendar_Shortcode' => 'class-cs-js-calendar-shortcode.php',
 			'Cs_Js_Smallgroups_Shortcode' => 'class-cs-js-smallgroups-shortcode.php',
+			'Cs_Js_Calendar_Shortcode' => 'class-cs-js-calendar-shortcode.php',
 		);
 
 	/**
@@ -57,7 +61,9 @@ class Cs_Js_Integration_Public {
 	private const SHORTCODE_FUNCTION_NAMES = array(
 			'cs-js-event-cards' => 'cs_js_event_cards_shortcode',
 			'cs-js-event-list' => 'cs_js_event_list_shortcode',
+			'cs-js-calendar' => 'cs_js_calendar_shortcode',
 			'cs-js-smallgroups' => 'cs_js_smallgroups_shortcode',
+			'cs-js-calendar' => 'cs_js_calendar_shortcode',
 		);
 
 	/**
@@ -78,6 +84,8 @@ class Cs_Js_Integration_Public {
 
 	/**
 	 * Load the required dependencies for the public side of this plugin.
+	 * - the classes which give the behaviour of the shortcodes,
+	 * - the static functions that can be called to execute the shortcodes.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -129,12 +137,22 @@ class Cs_Js_Integration_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-public.js', array( 'jquery' ), $this->version, false );
-		// Load the Alpine.js framework from their CDN - see https://alpinejs.dev/start-here
-		// wp_enqueue_script( 'alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
+		/*
+		 * We are using plain JavaScript.  This is the original boilerplate code for jQuery.
+		 * wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/csjs-integration-public.js', array( 'jquery' ), $this->version, false );
+		 */
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-public.js', array(), $this->version, false );
+		/*
+		 * Load the Alpine.js framework. We would love to use their CDN - see https://alpinejs.dev/start-here
+		 * wp_enqueue_script( 'alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
+		 * but WordPress don't allow that - we have to load the file from a local directory and maintain it there.
+		 */
  		wp_enqueue_script( 'alpine', plugin_dir_url( __FILE__ ) . 'js/alpinejs-3-x-x-min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
-		// Load the ChurchSuite framework from their CDN - see
-		// wp_enqueue_script( 'churchsuite', 'https://cdn.jsdelivr.net/npm/@churchsuite/embed@^5.2.3/dist/cdn.min.js', array(), $this->version, array( 'infooter' => 'true', ) );
+		/*
+		 * Load the ChurchSuite framework. We would love to use their CDN - see https://github.com/ChurchSuite/embed-json-script
+		 * wp_enqueue_script( 'churchsuite', 'https://cdn.jsdelivr.net/npm/@churchsuite/embed@^5.2.3/dist/cdn.min.js', array(), $this->version, array( 'infooter' => 'true', ) );
+		 * but WordPress don't allow that - we have to load the file from a local directory and maintain it there.
+		 */
 		wp_enqueue_script( 'churchsuite', plugin_dir_url( __FILE__ ) . 'js/churchsuite-embed-5.2.3.js', array(), $this->version, array( 'infooter' => 'true', ) );
 
 	}

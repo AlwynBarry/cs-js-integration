@@ -1,24 +1,24 @@
-    <div class="cs-event-cards cs-row">
+    <div class="csjs-event-cards csjs-row">
       <template x-for="event in events">
         <!-- There can only be one element within the template -->
-        <div :id="event.identifier" :class="event.status" class="cs-card cs-event-card">
-          <div class="cs-event-card-image-area">
+        <div :id="event.identifier" :class="event.status" class="csjs-card csjs-event-card">
+          <div class="csjs-event-card-image-area">
             <img :src="event.image?.medium">
           </div>
-          <div class="cs-event-card-details-area">
-            <div class="cs-event-name">
-                <a :href="event.link" class="cs-event-link" target="_blank"><span x-text="event.name"></span></a>
+          <div class="csjs-event-card-details-area">
+            <div class="csjs-event-name">
+                <a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
             </div>
-            <div class="cs-date">
+            <div class="csjs-date">
                 <!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
-                <span x-text="event.start.format('ll')" class="cs-date-gliph"></span>
+                <span x-text="event.start.format('ll')" class="csjs-date-gliph"></span>
             </div>
-            <div class="cs-time">
-                <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="cs-time-gliph cs-start-time"></span>
-                <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="cs-end-time"></span>
+            <div class="csjs-time">
+                <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="csjs-time-gliph csjs-start-time"></span>
+                <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="csjs-end-time"></span>
             </div>
-            <div class="cs-location"><span x-text="event.location" class="cs-location-gliph"></span></div>
-            <div class="cs-address"><span x-text="event.postcode"></span></span></div>
+            <div class="csjs-location"><span x-text="event.location" class="csjs-location-gliph"></span></div>
+            <div class="csjs-address"><span x-text="event.postcode"></span></span></div>
           </div>
         </div>
       </template>

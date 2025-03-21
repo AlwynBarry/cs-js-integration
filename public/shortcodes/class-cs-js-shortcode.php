@@ -32,7 +32,7 @@ namespace amb_dev\CS_JSI;
  */
 abstract class Cs_Js_Shortcode {
 
-	/*
+	/**
 	 * The root url for churchsuite, minus the church name.
 	 * Provided as a const so it can be easily changed if ChurchSuite changes in the future.
 	 *
@@ -42,14 +42,58 @@ abstract class Cs_Js_Shortcode {
 	 */
 	private const CHURCHSUITE_URL = '.churchsuite.com';
 
+	/**
+	 * The default shortcode attributes.  Only two attributes are expected because
+	 * all of the parameters for the churchsuite event or group details required
+	 * are held in the embed configuration provided by the caller.
+	 * Provided as a const so it can be easily changed if ChurchSuite changes in the future.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @const    string 	DEFAULT_ATTS    The default [no source] shortcode attributes
+	 */
     protected const DEFAULT_ATTS = array( 'church_name' => '', 'configuration' => '' );
 
+	/**
+	 * The church name used to construct the JSON url.  This is the name of the church
+	 * used when you would call your instance of churchsuite normally - i.e.
+	 * if you use 'https://mychurch.churchsuite.com/' then 'mychurch' is the church name.
+	 * The value provided is sanitized to contain A-Za-z only.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @const    string 	church_name    The church name from the normal ChurchSuite URL
+	 */
     protected readonly string $church_name;
+
+	/**
+	 * The embed configuration identifier to be used to obtain the JSON data from
+	 * the ChurchSuite API.  This is a hyphen-separated hex string.  The constructor
+	 * sanitizes the input to ensure that only hex and hyphens are permitted.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @const    string 	configuration    The unique embed configuration hex identifier
+	 */
     protected readonly string $configuration;
+
+	/**
+	 * The filename of the alpineHTML file to be used to create the output of this
+	 * shortcode.  The Alpine.js HTML is kept in a separate file so that it can be
+	 * easily modified or replaced to create a different output arrangement if needed.
+	 *
+	 * NOTE: we cannot use 'here' docs to create the Alpine.js html in this shortcode
+	 *       because 'here' docs are not permitted within Wordpress plugins.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @const    string 	alpineHTML    The filename of the alpine HTML to use to create
+	 *                                    the output of this shortcode.
+	 */
     protected readonly string $alpineHTML;
  
     
-    /*
+    /**
      * The constructor expects a church_name and a configuration parameter, and will
      * use these to set these properties once the parameters are sanitized.
      * A child class should call this constructor and then set the $alpineHTML
@@ -82,7 +126,7 @@ abstract class Cs_Js_Shortcode {
 	}
 
 	
-	/*
+	/**
 	 * A helper function which returns the HTML that will be the root of the JSON call
 	 * This is called for you by the run_shortcode() function before it dispatches to
 	 * get_HTML_response() in the child class. 
@@ -95,7 +139,7 @@ abstract class Cs_Js_Shortcode {
 	    return '<script>CS.url = "https://' . $this->church_name . self::CHURCHSUITE_URL . '";</script>';
 	}
 
-	/*
+	/**
 	 * This is the function the child class must implement that will return the HTML
 	 * response from the JSON ChurchSuite response.
 	 * 
@@ -108,7 +152,7 @@ abstract class Cs_Js_Shortcode {
 	protected abstract function get_HTML_response() : string; 
 
 
-	/*
+	/**
 	 * Run the shortcode to produce the HTML output
 	 * 
 	 * Add the inline script which causes the ChurchSuite library to get the JSON

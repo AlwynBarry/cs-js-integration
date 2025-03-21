@@ -36,7 +36,7 @@ class Cs_Js_Event_Cards_Shortcode extends Cs_Js_Shortcode {
         parent::__construct( $atts, 'eventCardsAlpine.html' );
 	}
 
-	/*
+	/**
 	 * Use the JSON response to create the HTML containing the list of events.
 	 * 
 	 * 
@@ -60,7 +60,7 @@ class Cs_Js_Event_Cards_Shortcode extends Cs_Js_Shortcode {
 }
 
 
-/*
+/**
  * Shortcode to be used in the content.
  *
  * @since 1.0.0

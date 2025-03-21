@@ -37,7 +37,7 @@ class Cs_Js_Event_List_Shortcode extends Cs_Js_Shortcode {
 	}
 
 
-	/*
+	/**
 	 * Use the JSON response to create the HTML containing the list of events.
 	 * 
 	 * For each date there is only one date output in a left hand column, styled, and then
@@ -62,7 +62,7 @@ class Cs_Js_Event_List_Shortcode extends Cs_Js_Shortcode {
 }
 
 
-/*
+/**
  * Shortcode to be used in the content.
  *
  * @since 1.0.0

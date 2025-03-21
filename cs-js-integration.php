@@ -34,15 +34,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
+ * The current plugin version.
+ * Started at version 1.0.0 and uses SemVer - https://semver.org
+ * This will be updated it as we release new versions.
  */
 define( 'CS_JS_INTEGRATION_VERSION', '1.0.0' );
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-cs-jsintegration-activator.php
+ * Run the plugin activation. For this plugin this does nothing ... no activation required
  */
 function activate_cs_js_integration() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cs-js-integration-activator.php';
@@ -50,8 +49,7 @@ function activate_cs_js_integration() {
 }
 
 /**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-cs-js-integration-deactivator.php
+ * Run the plugin deactivation. For this plugin this does nothing ... no deactivation required
  */
 function deactivate_cs_js_integration() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cs-js-integration-deactivator.php';

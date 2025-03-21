@@ -3,21 +3,23 @@
  */
 
 :root {
-	--cs-background-color: #ffffff;
-	--cs-primary-color: #3a76ca;
-	--cs-text-color: #303030;
-	--cs-text-on-primary-color: #ffffff;
-	--cs-text-lighter-color: #555555;
-	--cs-text-lightest-color: #808080;
-	--cs-gliph-color: #999999;
-	--cs-border-darker-color: #808080;
-	--cs-border-color: #c0c0c0;
-	--cs-border-lighter-color: #e0e0e0;
-	--cs-light-grey-background-color: #f3f3f3;
-	--cs-today-background-color: #ffffef;
+	--csjs-background-color: #ffffff;
+	--csjs-primary-color: #3a76ca;
+	--csjs-text-color: #303030;
+	--csjs-text-on-primary-color: #ffffff;
+	--csjs-text-lighter-color: #555555;
+	--csjs-text-lightest-color: #808080;
+	--csjs-gliph-color: #999999;
+	--csjs-border-darker-color: #808080;
+	--csjs-border-color: #c0c0c0;
+	--csjs-border-lighter-color: #e0e0e0;
+	--csjs-light-grey-background-color: #f7f7f7;
+	--csjs-today-background-color: #ffffef;
+	--csjs-category-1-color: #3a76ca;
+	--csjs-category-2-color: #3aca76;
 }
 
-div.cs-row {
+div.csjs-row {
 	/* A container to display the event 'cards' horizontally */
 	display: flex;
 	flex-direction: row;
@@ -25,20 +27,20 @@ div.cs-row {
 	justify-content: space-evenly;
 }
 
-div.cs-card {
+div.csjs-card {
 	/* Add shadows to create the "card" effect */
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	transition: 0.3s;
-	background-color: var(--cs-background-color);
+	background-color: var(--csjs-background-color);
 }
 
 /* On mouse-over, add a deeper shadow */
-div.cs-card:hover {
+div.csjs-card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-div.cs-event-card,
-div.cs-group {
+div.csjs-event-card,
+div.csjs-group {
 	/* Default width provides the right card size ... height is dependent on content */
 	width: 330px;
     /* Default margin ensures cards are not 'squeezed' together too much */
@@ -47,97 +49,97 @@ div.cs-group {
 	overflow: hidden;
 }
 
-div.cs-group {
+div.csjs-group {
 	width: 350px;
 	margin: 1rem 1rem;
 }
 
-div.cs-group-image-area,
-div.cs-event-card-image-area {
+div.csjs-group-image-area,
+div.csjs-event-card-image-area {
 	background-image: url("https://www.cambray.org/mp3_sermons/2022/01/cambray-front-sky-CBC-1024x576-1.jpg");
 	background-size: cover;
 	height: 186px;
 }
 
-div.cs-group-image-area {
+div.csjs-group-image-area {
 	height: 250px;
 }
 
-div.cs-group-image-area img {
+div.csjs-group-image-area img {
 	height: 250px;
 	width: 350px;
 	object-fit: cover;
 }
 
-div.cs-event-card-image-area img {
+div.csjs-event-card-image-area img {
 	height: 186px;
 	width: 330px;
 	object-fit: cover;
 }
 
-div.cs-group-details-area,
-div.cs-event-card-details-area {
+div.csjs-group-details-area,
+div.csjs-event-card-details-area {
 	/* Add some padding around the internal text */
 	padding: 1rem 1rem;
 }
 
-div.cs-event-name,
-div.cs-group-name { 
+div.csjs-event-name,
+div.csjs-group-name { 
 	font-size: 1.5rem;
 	margin: 1rem 0;
 }
 
-div.cs-date { /* no formatting at present */ }
+div.csjs-date { /* no formatting at present */ }
 
-span.cs-date-gliph::before {
+span.csjs-date-gliph::before {
 	content: "\f133";
 	font-family: "FontAwesome";
 	padding-right: 0.5rem;
-	color: var(--cs-gliph-color);
+	color: var(--csjs-gliph-color);
 }
 
-div.cs-time { /* no formatting at present */ }
+div.csjs-time { /* no formatting at present */ }
 
-span.cs-time-gliph::before {
+span.csjs-time-gliph::before {
 	content: "\f017";
 	font-family: "FontAwesome";
 	padding-right: 0.5rem;
-	color: var(--cs-gliph-color);
+	color: var(--csjs-gliph-color);
 }
 
-div.cs-location { /* no formatting at present */ }
+div.csjs-location { /* no formatting at present */ }
 
-span.cs-location-gliph::before {
+span.csjs-location-gliph::before {
 	content: "\f041";
 	font-family: "FontAwesome";
 	padding-right: 0.7rem;
-	color: var(--cs-gliph-color);
+	color: var(--csjs-gliph-color);
 }
 
-div.cs-address,
-div.cs-description {
+div.csjs-address,
+div.csjs-description {
     font-size: 0.8rem;
     line-height: 1.25;
-	color: var(--cs-text-lighter-color);
+	color: var(--csjs-text-lighter-color);
 	margin: 1rem 0;
 }
 
-div.cs-event-list div.cs-event-row {
+div.csjs-event-list div.csjs-event-row {
 	display: flex;
     flex-direction: row;
 }
 
-div.cs-event-list div.cs-date-column {
+div.csjs-event-list div.csjs-date-column {
     width: 5rem;
 }
 
-div.cs-event-list div.cs-event-column {
+div.csjs-event-list div.csjs-event-column {
 	width: 100%;
 }
 
-div.cs-event-list div.cs-date {
-    background-color: var(--cs-primary-color);
-    color: var(--cs-text-on-primary-color);
+div.csjs-event-list div.csjs-date {
+    background-color: var(--csjs-primary-color);
+    color: var(--csjs-text-on-primary-color);
     padding: 5px 5px;
     max-width: 3.5rem;
     text-align: center;
@@ -146,24 +148,24 @@ div.cs-event-list div.cs-date {
     line-height: 1rem;
 }
 
-div.cs-event-list div.cs-date .cs-day,
-div.cs-event-list div.cs-date .cs-date-number,
-div.cs-event-list div.cs-date .cs-month,
-div.cs-event-list div.cs-date .cs-year {
+div.csjs-event-list div.csjs-date .csjs-day,
+div.csjs-event-list div.csjs-date .csjs-date-number,
+div.csjs-event-list div.csjs-date .csjs-month,
+div.csjs-event-list div.csjs-date .csjs-year {
     display: block;
 }
 
-div.cs-event-list div.cs-date .cs-date-number {
+div.csjs-event-list div.csjs-date .csjs-date-number {
     font-size: 1.4rem;
     line-height: 1.4rem;
 }
 
-div.cs-event-list div.cs-date .cs-year {
+div.csjs-event-list div.csjs-date .csjs-year {
     display: none;
 }
 
-div.cs-event-list div.cs-compact-event {
-    border: 1px solid var(--cs-border-lighter-color);
+div.csjs-event-list div.csjs-compact-event {
+    border: 1px solid var(--csjs-border-lighter-color);
     border-radius: 5px;
     font-size: 0.9rem;
     line-height: 1rem;
@@ -172,39 +174,208 @@ div.cs-event-list div.cs-compact-event {
     margin-bottom: 0.7rem;
 }
 
-div.cs-event-list div.cs-compact-event:hover {
+div.csjs-event-list div.csjs-compact-event:hover {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-div.cs-event-list div.cs-compact-event div.cs-event-name,
-div.cs-event-list div.cs-compact-event div.ce-event-name a {
+div.csjs-event-list div.csjs-compact-event div.csjs-event-name,
+div.csjs-event-list div.csjs-compact-event div.ce-event-name a {
     font-size: 1rem;
 }
 
-div.cs-event-list div.cs-event-card.pending {
+div.csjs-event-list div.csjs-event-card.pending {
 	display: none;
 }
 
-div.cs-event-list div.cs-event-card.cancelled {
-	color: var(--cs-text-lightest-color);
+div.csjs-event-list div.csjs-event-card.cancelled {
+	color: var(--csjs-text-lightest-color);
 }
 
-div.cs-event-list div.cs-event-card.cancelled div.cs-event-name {
+div.csjs-event-list div.csjs-event-card.cancelled div.csjs-event-name {
 	text-decoration: line-through;
 }
 
-div.cs-compact-event span.cs-start-time{
+div.csjs-compact-event span.csjs-start-time{
     font-weight: bold;
 }
 
-div.cs-compact-event div.cs-location,
-div.cs-compact-event div.cs-address,
-div.cs-compact-event div.cs-description {
+div.csjs-compact-event div.csjs-location,
+div.csjs-compact-event div.csjs-address,
+div.csjs-compact-event div.csjs-description {
 	line-height: 1rem;
 	margin: 0.3rem 0;
 }
 
-div.cs-compact-event div.cs-address {
+div.csjs-compact-event div.csjs-address {
 	font-size: 0.7rem;
 	margin: 0.3rem 0 0.3rem 1.1rem;
+}
+
+div.csjs-calendar {
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid var(--csjs-border-lighter-color);
+}
+
+div.csjs-calendar-month-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+	font-size: 2rem;
+}
+
+div.csjs-calendar-month-nav {}
+
+div.csjs-calendar-month-nav button {
+    border-radius: 0.5rem;
+    border: 1px solid var(--csjs-border-lighter-color);
+    padding: 0.25rem;
+    align-items: center;
+    overflow: visible;
+    display: inline-flex;
+}
+
+div.csjs-calendar-month-nav button svg {
+    color: var(--csjs-text-lighter-color);
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+div.csjs-calendar-days-header,
+div.csjs-calendar-days {
+    display: flex;
+    flex-direction: row;
+}
+
+div.csjs-calendar-days {
+    flex-wrap: wrap;
+}
+
+div.csjs-day-header,
+div.csjs-calendar-date-cell {
+    width: 14.28%;
+    border: 1px solid var(--csjs-border-lighter-color);
+    border-right: 0px transparent;
+    border-bottom: 0px transparent;
+    padding: 0.5rem 0.5rem;
+}
+
+div.csjs-day-header {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+}
+
+div.csjs-days-header:last-child,
+div.csjs-calendar-days:nth-child(7) {
+    border-right: 1px solid var(--csjs-border-lighter-color);
+}    
+
+div.csjs-calendar-date-cell {
+    min-height: 5rem;
+}
+
+div.csjs-calendar-date-cell.csjs-calendar-before {
+    background-color: var(--csjs-light-grey-background-color);
+}
+
+div.csjs-calendar-date-cell.csjs-calendar-today {
+    background-color: var(--csjs-today-background-color);
+}
+
+div.csjs-date span.csjs-day,
+div.csjs-date span.csjs-year {
+    display: none;
+}
+
+div.csjs-calendar-event {
+	font-size: 0.9rem;
+	margin: 1rem 0 1.5rem 0;
+	position: relative;
+}
+
+div.csjs-calendar-event .csjs-time {
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+
+div.csjs-calendar-event .csjs-start-time {
+    font-weight: bold;
+}
+
+div.csjs-calendar-event div.csjs-event-name {
+    font-size: 0.9rem;
+    line-height: 1rem;
+    margin: 0.2rem 0 0 0;
+}
+
+div.csjs-calendar-event.csjs-calendar-category-1 {
+    color: var(--csjs-category-1-color);
+}
+
+div.csjs-calendar-event.csjs-calendar-category-2 {
+    color: var(--csjs-category-2-color);
+}
+
+div.csjs-calendar-event .csjs-event-hover-block {
+	position: absolute;
+	padding: 1rem;
+	border: 1px solid var(--cs-border-darker-color);
+	width: 280px;
+    background-color: var(--cs-background-color);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+	overflow: hidden;
+	display: none;
+}
+
+div.csjs-calendar-event button.csjs-clickable-caret{
+	float: right;
+	background-color: transparent;
+	border: none;
+	font-size: 1rem;
+	color: var(--cs-text-color);
+}
+
+div.csjs-calendar-event .csjs-event-hover-block button.csjs-clickable-caret {
+	float: right;
+	color: var(--cs-text-color);
+	background-color: var(--cs-light-grey-background-color);
+	border: 1px solid var(--cs-border-lighter-color);
+	border-radius: 3px;
+	font-size: 0.7rem;
+}
+
+div.csjs-calendar-event .csjs-event-hover-block.csjs-event-hover-reveal {
+	display: block;
+	z-index: 1;
+	left: auto;
+	right: 0rem;
+}
+
+div.csjs-calendar-date-cell:nth-child(7n+2) div.csjs-calendar-event .csjs-event-hover-block,
+div.csjs-calendar-date-cell:nth-child(7n+3) div.csjs-calendar-event .csjs-event-hover-block {
+	left: 1rem;
+	right: auto;
+}
+
+div.csjs-calendar-event .csjs-event-hover-block .csjs-location {
+	margin: 0.7rem 0 0 0;
+}
+
+div.csjs-calendar-event .csjs-event-hover-block .csjs-address {
+	margin: 0.3rem 0 0.3rem 1.1rem;
+}
+
+div.csjs-calendar-event .csjs-event-hover-block .csjs-description {
+	margin: 0.7rem 0 0 0;
+	word-wrap: break-word;
+	overflow: scroll;
+	font-size: 0.8rem;
+	max-height: 150px;
+}
+
+div.csjs-calendar-event .csjs-event-hover-block .csjs-description p {
+	font-size: 0.8rem;
 }
