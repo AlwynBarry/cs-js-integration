@@ -57,11 +57,13 @@ Currently there is no demo site.
 ## Contributions
 
 This plugin relies on the Churchsuite Javascript API library
-   (see [https://github.com/ChurchSuite/embed-json-script]https://github.com/ChurchSuite/embed-json-script)
+    (see [https://github.com/ChurchSuite/embed-json-script]https://github.com/ChurchSuite/embed-json-script)
+
 This plugin uses Alpine.js to process the ChurchSuite events and smallgroup information for display
-   (see [https://alpinejs.dev/]https://alpinejs.dev/)
+    (see [https://alpinejs.dev/]https://alpinejs.dev/)
+
 This plugin uses dayjs to process dates, because this is what the ChurchSuite API uses
-   (see [https://dayjs.org]https://dayjs.org/)
+    (see [https://dayjs.org]https://dayjs.org/)
 
 
 # Installation
