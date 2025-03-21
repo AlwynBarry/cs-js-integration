@@ -50,6 +50,16 @@ function csjs_calendar_app() {
         month: '',
 
         /**
+         * The month name of the month currently being displayed.
+         * This is kept in sync with the change in the month number as long as
+         * get_days() is called to fetch the new month data
+         *
+         * @since   1.0.0
+         * @var     string	month_name	Holds the string name of the current month
+         */
+        month_name: '',
+
+        /**
          * The year number.  This is initially set to today's year. We hold this
          * so that we can conveniently create dates for comparison purposes.
          *
@@ -107,6 +117,7 @@ function csjs_calendar_app() {
             this.today = dayjs();
             this.year = this.today.get( 'year' );
             this.month = this.today.get( 'month' );
+            this.month_name = this.today.format( "MMMM" );
             this.day = this.today.get( 'date' );
             /*
              * Set the day names to the internationalised day names ChurchSuite provides
@@ -194,10 +205,9 @@ function csjs_calendar_app() {
                 days_array.push( start_date.format( 'YYYY-MM-DD' ) );
                 start_date = start_date.add( 1, 'day' );
             }
+            this.month_name = origin_date.format( 'MMMM' );
             this.days = days_array;
         }
 
     }
 }
-
-

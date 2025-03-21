@@ -32,18 +32,16 @@ use amb_dev\CS_JSI\Cs_Js_Shortcode as Cs_Js_Shortcode;
  */
 class Cs_Js_Event_Cards_Shortcode extends Cs_Js_Shortcode {
 
-
     public function __construct( $atts ) {
         parent::__construct( $atts, 'eventCardsAlpine.html' );
 	}
-
 
 	/**
 	 * Use the JSON response to create the HTML containing the list of events.
 	 * 
 	 * 
 	 * 
-	 * @since	1.0.0
+	 * @since	1.0.1
 	 * @return	string	the HTML to render the events in cards
 	 */
 	protected function get_HTML_response() : string {
