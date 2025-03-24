@@ -20,6 +20,36 @@
  
  
 /**
+ * Remove all the HTML tags in a string
+ *
+ * @since	1.0.0
+ * @param   string  str The string to be sanitized
+ * @return  string      The string with all HTML tags removed
+ */
+function csjs_remove_tags( str ) {
+	if ( (str === null) || (str === '') )
+		return '';
+	else
+		str = str.toString();
+	return str.replace(/(<([^>]+)>)/ig, '');
+}
+
+
+/**
+ * Sanitize all the HTML in a string
+ *
+ * @since	1.0.0
+ * @param   string  str The string to be sanitized
+ * @return  string      The string with all HTML tags removed
+ */
+function csjs_sanitize_HTML( str ) {
+  var element = document.createElement('div');
+  element.innerText = str;
+  return element.innerHTML;
+}
+
+
+/**
  * A x-data object to maintain the date of the request for the calendar and provide
  * utility functions and filters that enable the calendar to be rendered correctly
  * 
@@ -142,6 +172,7 @@ function csjs_calendar_app() {
             return date.isBefore( this.today );
         },
 
+
         /**
          * Check if a dayjs date supplied is equal to today's date
          *
@@ -154,20 +185,6 @@ function csjs_calendar_app() {
             return date.isSame( this.today, 'day' ) ? true : false;
         },
 
-        /**
-         * Remove all the tags in a string
-         *
-         * @since	1.0.0
-         * @param   string  str The string to be sanitized
-         * @return  string      The string with all HTML tags removed
-         */
-        sanitize_tags( str ) {
-            if ( (str === null) || (str === '') )
-                return '';
-            else
-                str = str.toString();
-            return str.replace(/(<([^>]+)>)/ig, '');
-        },
         
         /**
          * Check if a ChurchSuite Event object is on the same date as the date
@@ -183,6 +200,7 @@ function csjs_calendar_app() {
             const other = new dayjs( this.d );
             return ev.start.isSame( other, 'day' ) ? true : false;
         },
+
         
         /**
          * Construct an array of the days in the five weeks from the week which

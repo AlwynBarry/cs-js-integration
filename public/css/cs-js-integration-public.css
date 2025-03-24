@@ -297,8 +297,8 @@ div.csjs-calendar-date-cell.csjs-calendar-today {
     background-color: var(--csjs-today-background-color);
 }
 
-div.cs-js-calendar div.csjs-date span.csjs-day,
-div.cs-js-calendar div.csjs-date span.csjs-year {
+div.csjs-calendar div.csjs-date span.csjs-day,
+div.csjs-calendar div.csjs-date span.csjs-year {
     display: none;
 }
 
@@ -352,6 +352,7 @@ div.csjs-calendar-event button.csjs-clickable-caret{
 	border: none;
 	font-size: 1rem;
 	color: var(--cs-text-color);
+	width: 16px; height: 16px;
 }
 
 div.csjs-calendar-event .csjs-event-hover-block button.csjs-clickable-caret {
@@ -360,7 +361,7 @@ div.csjs-calendar-event .csjs-event-hover-block button.csjs-clickable-caret {
 	background-color: var(--cs-light-grey-background-color);
 	border: 1px solid var(--cs-border-lighter-color);
 	border-radius: 3px;
-	font-size: 0.7rem;
+	width: 24px; height: 24px;
 }
 
 div.csjs-calendar-event .csjs-event-hover-block.csjs-event-hover-reveal {

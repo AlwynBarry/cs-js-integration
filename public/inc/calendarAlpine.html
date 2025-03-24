@@ -60,9 +60,8 @@
                                             <div class="csjs-calendar-event-body" x-data="{ open: false }" :class="event.status">
 												<div class="csjs-calendar-event-body" x-data="{ open: false }" :class="event.status">
 													<button type="button" class="csjs-clickable-caret" x-on:click="open = true"  x-on:click.outside="open = false">
-														<svg width="24" height="24" viewBox="0 0 24 24">
-															<path d="M7 10l5 5 5-5z"/>
-															<path d="M0 0h24v24H0z" fill="none"/>
+														<svg width="16" height="16" viewBox="0 0 16 16">
+															<path d="m 4,6 4,5 4,-5 z"/>
 														</svg>
 													</button>
 													<div class="csjs-event-hover-block" :class="{ 'csjs-event-hover-reveal': open }">
@@ -81,7 +80,7 @@
 														</div>
 														<div class="csjs-location" :class=" event.location === '' ? 'csjs-hidden' : '' "><span x-text="event.location" class="csjs-location-gliph"></span></div>
 														<div class="csjs-address" :class=" event.postcode === '' ? 'csjs-hidden' : '' "><span x-text="event.postcode"></span></div>
-														<div class="csjs-description"><span x-text="sanitize_tags( event.description )"></span></div>
+														<div class="csjs-description"><span x-text="csjs_remove_tags( event.description )"></span></div>
 													</div>
 												</div>
 												<div class="csjs-time">
