@@ -6,6 +6,9 @@ namespace amb_dev\CS_JSI;
 /**
  * The admin-specific functionality of the plugin.
  *
+ * This plugin defines shortcodes and so does not have admin functionality.
+ * This class has been left in case of future expansion / update to add admin functions.
+ *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
@@ -58,18 +61,10 @@ class Cs_Js_Integration_Admin {
 	public function enqueue_styles() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Cs_Js_Integration_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Cs_Js_Integration_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
+		 * We currently are not using the admin area of this plugin
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cs-js-integration-admin.css', array(), $this->version, 'all' );
+		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cs-js-integration-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -80,19 +75,11 @@ class Cs_Js_Integration_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Cs_Js_Integration_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Cs_Js_Integration_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+		/*
+		 * We currently are not using the admin area of this plugin
+		*/
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-admin.js', array( 'jquery' ), $this->version, false );
+		// wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 

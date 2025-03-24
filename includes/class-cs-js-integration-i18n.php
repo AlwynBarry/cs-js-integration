@@ -26,14 +26,13 @@ class Cs_Js_Integration_i18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		load_plugin_textdomain(
-			'cs-jsintegration',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		/*
+		 * Apparently since WP 6.7 this is no longer needed, according to the Wordpress Directory submission comments
+		 *
+		 * load_plugin_textdomain( 'cs-js-integration', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
+		 */
 
 	}
-
 
 
 }

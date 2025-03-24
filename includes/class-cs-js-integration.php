@@ -12,6 +12,7 @@ namespace amb_dev\CS_JSI;
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
+ * @link       https://https://github.com/AlwynBarry
  * @since      1.0.0
  * @package    Cs_Js_Integration
  * @subpackage Cs_Js_Integration/includes
@@ -57,6 +58,7 @@ class Cs_Js_Integration {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+	    // Note: CS_INTEGRATION_VERSION is defined in cs-js-integration.php
 		if ( defined( 'CS_JS_INTEGRATION_VERSION' ) ) {
 			$this->version = CS_JS_INTEGRATION_VERSION;
 		} else {
@@ -144,6 +146,9 @@ class Cs_Js_Integration {
 
 		$plugin_admin = new Cs_Js_Integration_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		/*
+		 * No admin styles or scripts are used in this plugin
+		 */
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
