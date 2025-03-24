@@ -17,8 +17,9 @@ The data is drawn from ChurchSuite JSON feeds using the v3 API and is displayed
 natively within your website using Javascript. This plugin uses the ChurchSuite
 Javascript v3 public API library to implement much of its functionality, but
 needs a **lot less** technical understanding to use in a WP website than trying
-to integrate the libraries and write it all from scratch for yourself.  Nonetheless,
-it is simple to modify the output of the shortcodes to suit your own needs.
+to integrate the libraries and write it all from scratch for yourself. 
+Nonetheless, it is simple to modify the output of the shortcodes to suit
+your own needs.
 
 
 == Current features include: ==
@@ -234,10 +235,15 @@ None as yet
 
 = v1.0.0 =
 
+**2025-03-24**
+* Added SVGs to the calendar drop-down. Ensured Event List only shows
+  dates when the date has changed to a new date.
+
 **2025-03-21**
-* Added Calendar shortcode and tidied up all the css styling across the shortcodes
+* Added Calendar shortcode and tidied up all the css styling across the
+shortcodes
 
 **2025-03-11**
-* Initial release of a usable small set of shortcodes, given the big limitations of the
-  new Churchsuite JSON API.  All commented and made ready for future submission to the
-  Wordpress Plugin Directory.
+* Initial release of a usable small set of shortcodes, given the
+limitations of the v3 Churchsuite JSON API.  All commented and made ready
+for future submission to the Wordpress Plugin Directory.
