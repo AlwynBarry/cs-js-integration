@@ -34,9 +34,9 @@
 
             <div class="csjs-calendar-days-grid">
 
-                <div class="csjs-calendar-days-header">
+                <div class="csjs-calendar-day-name-header">
                     <template x-for="( day, index ) in day_names" :key="index">	
-                        <div class="csjs-day-header">
+                        <div class="csjs-calendar-day-name-cell">
                             <span x-text="day"></span>
                         </div>
                     </template>
@@ -57,30 +57,42 @@
                                 <div class="csjs-date-cell-inner">
                                     <template x-for="event in events.filter( equals_date_filter, { d:date } )">
                                         <div class="csjs-calendar-event" :class="'csjs-calendar-category-' + event.categoryId">
-                                            <div x-data="{ open: false }">
-                                                <button type="button" class="csjs-clickable-caret" x-on:click="open = true"  x-on:click.outside="open = false">...</button>
-                                                <div class="csjs-event-hover-block" :class="{ 'csjs-event-hover-reveal': open }">
-                                                    <button type="button" class="csjs-clickable-caret" aria-label="Close Modal" x-on:click="open = false">X</button>
-                                                    <div class="csjs-time">
-                                                        <span x-text="event.allDay ? 'All Day' : event.start.format( 'h:mma' )" class="csjs-time-gliph csjs-start-time"></span>
-                                                        <span x-text="event.allDay ? '' : ' - ' + event.end.format( 'h:mma' )" class="csjs-end-time"></span>
-                                                    </div>
-                                                    <div class="csjs-event-name">
-                                                      <a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
-                                                    </div>
-                                                    <div class="csjs-location"><span x-text="event.location" class="csjs-location-gliph"></span></div>
-                                                    <div class="csjs-address"><span x-text="event.postcode"></span></div>
-                                                    <div class="csjs-description"><span x-text="sanitize_tags( event.description )"></span></div>
-                                                </div>
-                                            </div>
-                                            <div class="csjs-time">
-                                                <span x-text="event.allDay ? 'All Day' : event.start.format( 'h:mma' )" class="csjs-time-gliph csjs-start-time"></span>
-                                                <span x-text="event.allDay ? '' : ' - ' + event.end.format( 'h:mma' )" class="csjs-end-time"></span>
-                                            </div>
-                                            <div class="csjs-event-name">
-                                                <a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
-                                            </div>
-                                        </div>
+                                            <div class="csjs-calendar-event-body" x-data="{ open: false }" :class="event.status">
+												<div class="csjs-calendar-event-body" x-data="{ open: false }" :class="event.status">
+													<button type="button" class="csjs-clickable-caret" x-on:click="open = true"  x-on:click.outside="open = false">
+														<svg width="24" height="24" viewBox="0 0 24 24">
+															<path d="M7 10l5 5 5-5z"/>
+															<path d="M0 0h24v24H0z" fill="none"/>
+														</svg>
+													</button>
+													<div class="csjs-event-hover-block" :class="{ 'csjs-event-hover-reveal': open }">
+														<button type="button" class="csjs-clickable-caret" aria-label="Close Modal" x-on:click="open = false">
+															<svg fill="none" viewBox="0 0 16 16" height="16" width="16" stroke="currentColor">
+      															<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m 3,3 l 10,10"/>
+																<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m 3,13 l 10,-10"/>
+															</svg>
+														</button>
+														<div class="csjs-time">
+															<span x-text="event.allDay ? 'All Day' : event.start.format( 'h:mma' )" class="csjs-time-gliph csjs-start-time"></span>
+															<span x-text="event.allDay ? '' : ' - ' + event.end.format( 'h:mma' )" class="csjs-end-time"></span>
+														</div>
+														<div class="csjs-event-name">
+														  <a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
+														</div>
+														<div class="csjs-location" :class=" event.location === '' ? 'csjs-hidden' : '' "><span x-text="event.location" class="csjs-location-gliph"></span></div>
+														<div class="csjs-address" :class=" event.postcode === '' ? 'csjs-hidden' : '' "><span x-text="event.postcode"></span></div>
+														<div class="csjs-description"><span x-text="sanitize_tags( event.description )"></span></div>
+													</div>
+												</div>
+												<div class="csjs-time">
+													<span x-text="event.allDay ? 'All Day' : event.start.format( 'h:mma' )" class="csjs-time-gliph csjs-start-time"></span>
+													<span x-text="event.allDay ? '' : ' - ' + event.end.format( 'h:mma' )" class="csjs-end-time"></span>
+												</div>
+												<div class="csjs-event-name">
+													<a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
+												</div>
+											</div>
+										</div>
                                     </template>
                                 </div>
                             </div>

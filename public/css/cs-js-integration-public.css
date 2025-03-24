@@ -19,6 +19,18 @@
 	--csjs-category-2-color: #3aca76;
 }
 
+.csjs-hidden {
+	display: none;
+}
+
+.cancelled {
+	color: var(--cs-text-lightest-color);
+}
+
+.cancelled div.csjs-event-name {
+	text-decoration: line-through;
+}
+	
 div.csjs-row {
 	/* A container to display the event 'cards' horizontally */
 	display: flex;
@@ -242,7 +254,7 @@ div.csjs-calendar-month-nav button svg {
     height: 1.5rem;
 }
 
-div.csjs-calendar-days-header,
+div.csjs-calendar-day-name-header,
 div.csjs-calendar-days {
     display: flex;
     flex-direction: row;
@@ -252,7 +264,7 @@ div.csjs-calendar-days {
     flex-wrap: wrap;
 }
 
-div.csjs-day-header,
+div.csjs-calendar-day-name-cell,
 div.csjs-calendar-date-cell {
     width: 14.28%;
     border: 1px solid var(--csjs-border-lighter-color);
@@ -261,14 +273,14 @@ div.csjs-calendar-date-cell {
     padding: 0.5rem 0.5rem;
 }
 
-div.csjs-day-header {
+div.csjs-calendar-day-name-cell {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1.5rem;
 }
 
-div.csjs-days-header:last-child,
+div.csjs-calendar-day-name-header:last-child,
 div.csjs-calendar-days:nth-child(7) {
     border-right: 1px solid var(--csjs-border-lighter-color);
 }    
@@ -285,8 +297,8 @@ div.csjs-calendar-date-cell.csjs-calendar-today {
     background-color: var(--csjs-today-background-color);
 }
 
-div.csjs-date span.csjs-day,
-div.csjs-date span.csjs-year {
+div.cs-js-calendar div.csjs-date span.csjs-day,
+div.cs-js-calendar div.csjs-date span.csjs-year {
     display: none;
 }
 
@@ -299,6 +311,10 @@ div.csjs-calendar-event {
 div.csjs-calendar-event .csjs-time {
     font-size: 0.9rem;
     line-height: 1rem;
+}
+
+div.csjs-calendar-event span.csjs-time-gliph::before {
+	display: none;
 }
 
 div.csjs-calendar-event .csjs-start-time {
@@ -388,7 +404,7 @@ div.csjs-calendar-event .csjs-event-hover-block .csjs-description p {
         background-color: transparent;
     }
 
-	div.csjs-calendar div.csjs-day-header {
+	div.csjs-calendar div.csjs-calendar-day-name-cell {
 		visibility: hidden;
 		height: 0;
 		position: absolute;

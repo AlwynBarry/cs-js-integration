@@ -1,31 +1,33 @@
-    <div class="csjs-event-list">
-      <template x-for="event in events">
-        <!-- There can only be one element within the template -->
-        <div class="csjs-event-list-event">
-          <div class="csjs-event-row">
-            <div class="csjs-date-column">
-              <div class="csjs-date">
-                <!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
-		        <span x-text="event.start.format('ddd')" class="csjs-day"></span>
-		        <span x-text="event.start.format('D')" class="csjs-date-number"></span>
-		        <span x-text="event.start.format('MMM')" class="csjs-month"></span>
-		        <span x-text="event.start.format('YYYY')" class="csjs-year"></span>
-		      </div>
-		    </div>
-		    <div class="csjs-event-column">
-		      <div :id="event.identifier" :class="event.status" class="csjs-card csjs-compact-event">
-                <div class="csjs-time">
-                    <span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="csjs-time-gliph csjs-start-time"></span>
-                    <span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="csjs-end-time"></span>
-                </div>
-                <div class="csjs-event-name">
-                  <a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
-                </div>
-                <div class="csjs-location"><span x-text="event.location" class="csjs-location-gliph"></span></div>
-                <div class="csjs-address"><span x-text="event.postcode"></span></div>
-              </div>
-            </div>  
-          </div>
-        </div>
-      </template>
-    </div>
+<div x-data="csjs_event_list_app()" x-init="[ init_date() ]" x-cloak>
+	<div class="csjs-event-list">
+		<template x-for="event in events">
+			<!-- There can only be one element within the template -->
+			<div class="csjs-event-list-event">
+				<div class="csjs-event-row">
+					<div class="csjs-date-column">
+						<div :class=" is_same( event.start ) ? 'csjs-hidden' : '' " class="csjs-date">
+							<!-- Event times are day.js instances - see https://day.js.org/ for formatting options -->
+							<span x-text="event.start.format('ddd')" class="csjs-day"></span>
+							<span x-text="event.start.format('D')" class="csjs-date-number"></span>
+							<span x-text="event.start.format('MMM')" class="csjs-month"></span>
+							<span x-text="event.start.format('YYYY')" class="csjs-year"></span>
+						</div>
+					</div>
+					<div class="csjs-event-column">
+						<div :id="event.identifier" :class="event.status" class="csjs-card csjs-compact-event">
+							<div class="csjs-time">
+								<span x-text="event.allDay ? 'All Day' : event.start.format('h:mma')" class="csjs-start-time"></span>
+								<span x-text="event.allDay ? '' : ' - ' + event.end.format('h:mma')" class="csjs-end-time"></span>
+							</div>
+							<div class="csjs-event-name">
+								<a :href="event.link" class="csjs-event-link" target="_blank"><span x-text="event.name"></span></a>
+							</div>
+							<div class="csjs-location" :class=" event.location === '' ? 'csjs-hidden' : '' "><span x-text="event.location" class="csjs-location-gliph"></span></div>
+							<div class="csjs-address" :class=" event.address === '' ? 'csjs-hidden' : '' "><span x-text="event.postcode"></span></div>
+						</div>
+					</div>  
+				</div>
+			</div>
+		</template>
+	</div>
+</div>

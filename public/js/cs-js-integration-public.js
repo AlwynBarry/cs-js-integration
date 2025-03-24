@@ -211,3 +211,62 @@ function csjs_calendar_app() {
 
     }
 }
+
+
+/**
+ * A x-data object to maintain the date of the request for the event list
+ * and provide utility functions so that each event can be checked to see
+ * when a new date has been reached.
+ * 
+ * @since   1.0.0
+ */
+ function csjs_event_list_app() {
+
+    return {
+
+        /**
+         * The dayjs instance holding the date of the current item being
+         * processed, initialised to a date before the first event.
+         * Used to work out when we have a first occurance of a new date
+         *
+         * @since   1.0.0
+         * @var     dayjs	current_date	Holds the day being processed
+         */
+        current_date: '',
+
+        /**
+         * Construct the initial values from today's date.
+         *
+         * @since	1.0.0
+         */
+        init_date() {
+            /*
+             * Set the date values from today's date using a dayjs date
+             */
+            this.current_date = dayjs().subtract( 1, 'day' );
+        },
+        
+        /**
+         * Check if a dayjs date supplied is on the previous date stored
+         * As a side effect, if the date is different, update the date
+         * recorded to the date of the current event.
+         *
+         * @since	1.0.0
+         * @param   dayjs   date			The date to be checked
+         * @return  bool					True if the year, month, date part of the date
+         *                          		is the same as that of the stored date
+         * @state	datejs	current_date	Updated to the date of the event if
+         * 									the current_date is an earlier date.
+         */
+        is_same( date ) {
+            let result = date.isSame( this.current_date, 'day' ) ? true : false;
+            if ( ! result ) {
+				// Set the current date to the date passed in
+				this.current_date = date;
+			}
+			return result;
+        }
+
+    }
+}
+
