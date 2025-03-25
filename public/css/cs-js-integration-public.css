@@ -353,6 +353,8 @@ div.csjs-calendar-event button.csjs-clickable-caret{
 	font-size: 1rem;
 	color: var(--cs-text-color);
 	width: 16px; height: 16px;
+	padding: 0;
+	margin: 0 0 0 5px;
 }
 
 div.csjs-calendar-event .csjs-event-hover-block button.csjs-clickable-caret {
