@@ -4,7 +4,9 @@
         <!-- There can only be one element within the template -->
         <div :id="group.identifier" class="csjs-card csjs-group">
           <div class="csjs-group-image-area">
-            <img :src="group.image?.medium">
+            <template x-if="group.image?.medium">
+              <img :src="group.image?.medium">
+            </template>
           </div>
           <div class="csjs-group-details-area">
             <div class="csjs-group-name">

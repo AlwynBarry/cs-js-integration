@@ -3,7 +3,9 @@
         <!-- There can only be one element within the template -->
         <div :id="event.identifier" :class="event.status" class="csjs-card csjs-event-card">
           <div class="csjs-event-card-image-area">
-            <img :src="event.image?.medium">
+            <template x-if="event.image?.medium">
+              <img :src="event.image?.medium">
+            </template>
           </div>
           <div class="csjs-event-card-details-area">
             <div class="csjs-event-name">
