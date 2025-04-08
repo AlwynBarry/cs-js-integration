@@ -124,7 +124,15 @@ class Cs_Js_Integration_Public {
 	 * @access   public
 	 */
 	public function enqueue_styles() {
+		
+		/*
+		 * Enqueue the fontawesome free font for the glyphs we use
+		 */
+		wp_enqueue_style( 'csjs-glyphs-css', plugin_dir_url( __FILE__ ) . '../fonts/glyphs/css/glyphs.css', array(), $this->version, 'all' );
 
+		/*
+		 * Enqueue the style sheet for the public display of the shortcodes
+		 */
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cs-js-integration-public.css', array(), $this->version, 'all' );
 
 	}
@@ -143,15 +151,11 @@ class Cs_Js_Integration_Public {
 		 */
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cs-js-integration-public.js', array(), $this->version, false );
 		/*
-		 * Load the Alpine.js framework. We would love to use their CDN - see https://alpinejs.dev/start-here
-		 * wp_enqueue_script( 'alpine', 'https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
-		 * but WordPress don't allow that - we have to load the file from a local directory and maintain it there.
+		 * Load the Alpine.js framework.
 		 */
  		wp_enqueue_script( 'alpine', plugin_dir_url( __FILE__ ) . 'js/alpinejs-3-x-x-min.js', array(), $this->version, array( 'strategy'  => 'defer', 'infooter' => 'true', ) );
 		/*
-		 * Load the ChurchSuite framework. We would love to use their CDN - see https://github.com/ChurchSuite/embed-json-script
-		 * wp_enqueue_script( 'churchsuite', 'https://cdn.jsdelivr.net/npm/@churchsuite/embed@^5.2.3/dist/cdn.min.js', array(), $this->version, array( 'infooter' => 'true', ) );
-		 * but WordPress don't allow that - we have to load the file from a local directory and maintain it there.
+		 * Load the ChurchSuite framework.
 		 */
 		wp_enqueue_script( 'churchsuite', plugin_dir_url( __FILE__ ) . 'js/churchsuite-embed-5.2.3.js', array(), $this->version, array( 'infooter' => 'true', ) );
 

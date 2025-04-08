@@ -1,5 +1,5 @@
 # Javascript Integration for ChurchSuite
-* Contributors: Alwyn Barry
+* Contributors: dramb
 * Tags: Events, ChurchSuite, Featured
 * Requires at least: 6.4
 * Tested up to: 6.7
@@ -32,6 +32,7 @@ your own needs.
 
 
 ## A little Technical information
+
 For the technical among you: This shortcode works on the 'client side',
 building the in the user's browser.  This can be faster, in some circumstances,
 and more responsive to user input.
@@ -232,6 +233,14 @@ None as yet
 
 
 ## Changelog
+
+**2025-04-08**
+* Minor changes to correct issues identified by the Wordpress Directory
+plugin team:
+- the username of the developer (in readme.txt)
+- remove comments in code which were being read by the reviewer
+(erroneously) as actual code (in class-cs-js-integration-public.php)
+- a global DEFINE which was not prefixed - now a CONST within a namespace
 
 ### v1.0.0
 

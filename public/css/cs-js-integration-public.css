@@ -24,7 +24,7 @@
 }
 
 .cancelled {
-	color: var(--cs-text-lightest-color);
+	color: var(--csjs-text-lightest-color);
 }
 
 .cancelled div.csjs-event-name {
@@ -68,7 +68,7 @@ div.csjs-group {
 
 div.csjs-group-image-area,
 div.csjs-event-card-image-area {
-	background-image: url("https://www.cambray.org/mp3_sermons/2022/01/cambray-front-sky-CBC-1024x576-1.jpg");
+	background-image: linear-gradient(to bottom right, var(--csjs-primary-color), black);
 	background-size: cover;
 	height: 186px;
 }
@@ -104,8 +104,9 @@ div.csjs-group-name {
 div.csjs-date { /* no formatting at present */ }
 
 span.csjs-date-gliph::before {
-	content: "\f133";
-	font-family: "FontAwesome";
+	content: "\e800";
+	font-family: "glyphs";
+	font-size: 0.9rem;
 	padding-right: 0.5rem;
 	color: var(--csjs-gliph-color);
 }
@@ -113,8 +114,9 @@ span.csjs-date-gliph::before {
 div.csjs-time { /* no formatting at present */ }
 
 span.csjs-time-gliph::before {
-	content: "\f017";
-	font-family: "FontAwesome";
+	content: "\e802";
+	font-family: "glyphs";
+	font-size: 0.9rem;
 	padding-right: 0.5rem;
 	color: var(--csjs-gliph-color);
 }
@@ -122,8 +124,9 @@ span.csjs-time-gliph::before {
 div.csjs-location { /* no formatting at present */ }
 
 span.csjs-location-gliph::before {
-	content: "\f041";
-	font-family: "FontAwesome";
+	content: "\e801";
+	font-family: "glyphs";
+	font-size: 0.9rem;
 	padding-right: 0.7rem;
 	color: var(--csjs-gliph-color);
 }
@@ -266,18 +269,23 @@ div.csjs-calendar-days {
 
 div.csjs-calendar-day-name-cell,
 div.csjs-calendar-date-cell {
-    width: 14.28%;
+    width: 14.1%;
     border: 1px solid var(--csjs-border-lighter-color);
     border-right: 0px transparent;
     border-bottom: 0px transparent;
-    padding: 0.5rem 0.5rem;
+    padding: 0;
+}
+
+div.csjs-calendar-date-cell div.csjs-day-content {
+	padding: 0.5rem 0.5rem;
 }
 
 div.csjs-calendar-day-name-cell {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 0.5rem 1.5rem;
+	padding: 0.5rem 0rem;
+	overflow: hidden;
 }
 
 div.csjs-calendar-day-name-header:last-child,
@@ -338,9 +346,9 @@ div.csjs-calendar-event.csjs-calendar-category-2 {
 div.csjs-calendar-event .csjs-event-hover-block {
 	position: absolute;
 	padding: 1rem;
-	border: 1px solid var(--cs-border-darker-color);
+	border: 1px solid var(--csjs-border-darker-color);
 	width: 280px;
-    background-color: var(--cs-background-color);
+    background-color: var(--csjs-background-color);
     box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
 	overflow: hidden;
 	display: none;
@@ -351,7 +359,7 @@ div.csjs-calendar-event button.csjs-clickable-caret{
 	background-color: transparent;
 	border: none;
 	font-size: 1rem;
-	color: var(--cs-text-color);
+	color: var(--csjs-text-color);
 	width: 16px; height: 16px;
 	padding: 0;
 	margin: 0 0 0 5px;
@@ -359,9 +367,9 @@ div.csjs-calendar-event button.csjs-clickable-caret{
 
 div.csjs-calendar-event .csjs-event-hover-block button.csjs-clickable-caret {
 	float: right;
-	color: var(--cs-text-color);
-	background-color: var(--cs-light-grey-background-color);
-	border: 1px solid var(--cs-border-lighter-color);
+	color: var(--csjs-text-color);
+	background-color: var(--csjs-light-grey-background-color);
+	border: 1px solid var(--csjs-border-lighter-color);
 	border-radius: 3px;
 	width: 24px; height: 24px;
 }
@@ -421,13 +429,13 @@ div.csjs-calendar-event .csjs-event-hover-block .csjs-description p {
 		border: 0px solid transparent;
 		width: 100%;
 	}
-	
+
 	div.csjs-calendar div.csjs-calendar-date-cell div.csjs-day-content {
 		display: flex;
 		flex-direction: row;
 	    width: 100%;
 	}
-	  
+
 	div.csjs-calendar div.csjs-calendar-date-cell.csjs-calendar-before {
 		display: none;
 	}
@@ -436,8 +444,16 @@ div.csjs-calendar-event .csjs-event-hover-block .csjs-description p {
         width: 5rem;   
 	}
 
+	div.csjs-calendar-date-cell div.csjs-day-content {
+		padding: 0;
+	}
+
 	div.csjs-calendar div.csjs-calendar-date-cell div.csjs-date-cell-inner {
         width: 100%;
+	}
+
+	div.csjs-calendar-event button.csjs-clickable-caret {
+		margin-right: 1rem;
 	}
 
     div.csjs-calendar-date-cell div.csjs-event-hover-block.csjs-event-hover-reveal,
@@ -453,8 +469,8 @@ div.csjs-calendar-event .csjs-event-hover-block .csjs-description p {
 	}
 
 	div.csjs-calendar div.csjs-calendar-date-cell  div.csjs-date {
-		background-color: var(--cs-primary-color);
-		color: var(--cs-text-on-primary-color);
+		background-color: var(--csjs-primary-color);
+		color: var(--csjs-text-on-primary-color);
 		padding: 5px 5px;
 		width: 3.5rem;
 		max-width: 3.5rem;
